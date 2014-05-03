@@ -5,12 +5,18 @@
 	<meta charset="utf-8">
     <title>Template</title>
 	<link rel="stylesheet" href="css/bootstrap.css"  type="text/css"/>
+	<link rel="stylesheet" type="text/css" href="css/smoothness/jquery-ui.css">
 	<link rel="stylesheet" href="css/jquery.fileupload.css">
 	<link rel="stylesheet" href="css/jquery.fileupload-ui.css">
 	<style type="text/css" media="screen">
     #editor { 
         height: 590px;
     }
+</style>
+<style>
+  #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+  #sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1em; height: 30px; }
+  #sortable li span { position: absolute; margin-left: -1.3em; }
 </style>
 </head>
 <body>
@@ -39,6 +45,13 @@
     						<div class="row" id="editor"></div>
     					</div>
 	    				<div class="tab-pane" id="upload_pane">
+	    					<div id="run_order_div" class="row" style="display : none;">
+		    					Confirm the loading order
+		    					<form id="run_order_sort">
+		    						<ul id="sortable"></ul>
+		    						<input type="button" value="Confirm Order" onclick="run_order_confirmed()">
+		    					</form>
+	    					</div>
 	    					<form id="fileupload" action="" method="POST" enctype="multipart/form-data">
 						        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
 						        <div class="row fileupload-buttonbar">
@@ -60,6 +73,10 @@
 						                <button type="button" class="btn btn-danger delete">
 						                    <i class="glyphicon glyphicon-trash"></i>
 						                    <span>Delete</span>
+						                </button>
+						                <button type="button" class="btn btn-success start" onclick="run()">
+						                    <i class="glyphicon glyphicon-play"></i>
+						                    <span>Run</span>
 						                </button>
 						                <input type="checkbox" class="toggle">
 						                <!-- The global file processing state -->
@@ -94,12 +111,16 @@
 						    <li>
 						    	<a href="#linked" data-toggle="tab">Linked</a>
 						    </li>
+						    <li>
+						    	<a href="#hex" data-toggle="tab">Hex</a>
+						    </li>
 						</ul>
     				</div>
     				<div class="tab-content" id="tab_content">
 	    				<div class="tab-pane active" id="pass1">Pass1</div>
 	    				<div class="tab-pane" id="pass2">Pass2</div>
 	    				<div class="tab-pane" id="linked">Linked</div>
+	    				<div class="tab-pane" id="hex">Hex</div>
     				</div>
 	    		</div>
 		</div>
@@ -168,7 +189,7 @@
                     <i class="glyphicon glyphicon-trash"></i>
                     <span>Delete</span>
                 </button>
-                <input type="checkbox" name="delete" value="1" class="toggle">
+                <input type="checkbox" name="delete" value="1" run_sel_value="{%=file.name%}"  class="toggle">
             {% } else { %}
                 <button class="btn btn-warning cancel">
                     <i class="glyphicon glyphicon-ban-circle"></i>
@@ -181,6 +202,7 @@
 </script>
     <script src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/bootstrap.js"></script>
+	<script type="text/javascript" src="js/jquery-ui.js"></script>
 	<script type="text/javascript" src="js/jquery.ui.widget.js"></script>
 	<script src="src/ace.js" type="text/javascript" ></script>
 	<script type="text/javascript" src="js/custom.js"></script>

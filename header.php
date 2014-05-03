@@ -14,11 +14,7 @@
         <!--the collapsable content-->
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="#" class="custom_icon_link" onclick="run()">
-                        <span class="glyphicon glyphicon-play custom_navbar_icon"></span>
-                    Run</a>
-                </li>
+                
             </ul>
             
         </div>
