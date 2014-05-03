@@ -1,0 +1,22 @@
+;Sample program for demonstrating 8085 assembler
+
+START: CMA
+;2F
+CALL END
+;CDD807
+MVI A, 56H
+;3E56
+MOV B, A
+;47
+MVI A, 32H
+;3E32
+ADD B
+;80	
+MOV C, A
+;4F
+ANI 99H
+;E699	
+END: CALL START
+;CDD007	
+HLT
+;76

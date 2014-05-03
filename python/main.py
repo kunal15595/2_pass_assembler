@@ -20,6 +20,8 @@ from lib import pre_processor,assembler,linker,loader
 import sys
 fileNames = []
 fileNames=sys.argv
+fileNames.remove(fileNames[0])
+# print fileNames
 # inFile = raw_input('Enter the file name : ');
 # i=0;
 # while (inFile!='') :
