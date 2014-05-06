@@ -258,3 +258,55 @@ function run_order_confirmed(){
 	  
 	});
 }
+
+function download(){
+	var file_list=[];
+	$("#file_list").find("input:checkbox").each(function(){
+		if($(this).prop("checked"))
+			file_list.push($(this).attr("run_sel_value"));
+	});
+
+	$.ajax({
+	  	type: "POST",
+	  	url: "get_file_content.php",
+	  	dataType: "json",
+	  	data: {
+	  			file_list : file_list
+	  		},
+	  	success: function(data){
+		  	var zip = new JSZip();
+			for (var i in file_list){
+				file_content=data[file_list[i]];
+				zip.file(file_list[i],file_content);
+			}
+			var content=zip.generate({type:"blob"});
+			saveAs(content, "download.zip");
+		  	
+	  	},
+	  	error: function (request, textStatus, error) {
+            if(request.readyState==4){// 4 means complete
+                if(request.status!=200){
+                    alert(textStatus);
+                    alert(request.status);
+                    alert(error);        
+                }else{
+                    //no error
+                }    
+            }
+        }
+	  
+	});
+	// console.log(file_list);
+	var zip = new JSZip();
+	for (var i in file_list){
+		file_content=
+		zip.file(file_list[i],file_content);
+	}
+	var content=zip.generate({type:"blob"});
+	// alert(content);
+	saveAs(content, "download.zip");
+	// var url  = window.URL.createObjectURL(content);
+ //    alert(url);
+ //    window.location.assign(url);
+
+}

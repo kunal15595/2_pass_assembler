@@ -81,6 +81,10 @@
 						                    <i class="glyphicon glyphicon-play"></i>
 						                    <span>Run</span>
 						                </button>
+						                <button type="button" class="btn btn-primary start" onclick="download()">
+						                    <i class="glyphicon glyphicon-download"></i>
+						                    <span>Download</span>
+						                </button>
 						                <input type="checkbox" class="toggle">
 						                <!-- The global file processing state -->
 						                <span class="fileupload-process"></span>
@@ -219,6 +223,8 @@
 	<script type="text/javascript" src="js/bootstrap.js"></script>
 	<script type="text/javascript" src="js/jquery-ui.js"></script>
 	<script type="text/javascript" src="js/jquery.ui.widget.js"></script>
+	<script type="text/javascript" src="js/jszip.js"></script>
+	<script type="text/javascript" src="js/FileSaver.js"></script>
 	<script src="src/ace.js" type="text/javascript" ></script>
 	<script type="text/javascript" src="js/custom.js"></script>
 	<!-- // <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> -->
