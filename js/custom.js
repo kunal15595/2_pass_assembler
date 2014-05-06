@@ -86,10 +86,47 @@ function run_order_confirmed(){
 	macro_table=$("#macro_table");
   	symbol_table=$("#symbol_table");
   	variable_table=$("#variable_table");
-  	$("#pass2").html("");
-  	$("#linked").html("");
-  	$("#loaded").html("");
-  	$("#hex").html("");
+  	var pass2_editor = ace.edit("pass2");
+  	var linked_editor = ace.edit("linked");
+  	var loaded_editor = ace.edit("loaded");
+  	var hex_editor = ace.edit("hex");
+  	pass2_editor.setValue("");
+  	linked_editor.setValue("");
+  	loaded_editor.setValue("");
+  	hex_editor.setValue("");
+
+  	pass2_editor.setTheme("ace/theme/chrome");
+	pass2_editor.getSession().setTabSize(4);
+	pass2_editor.getSession().setUseSoftTabs(true);
+	pass2_editor.getSession().setMode("ace/mode/assembly_x86");  
+	document.getElementById('pass2').style.fontSize='20px';
+	pass2_editor.gotoLine(1);
+	pass2_editor.setReadOnly(true);
+
+	linked_editor.setTheme("ace/theme/chrome");
+	linked_editor.getSession().setTabSize(4);
+	linked_editor.getSession().setUseSoftTabs(true);
+	linked_editor.getSession().setMode("ace/mode/assembly_x86");  
+	document.getElementById('linked').style.fontSize='20px';
+	linked_editor.gotoLine(1);
+	linked_editor.setReadOnly(true);
+
+	loaded_editor.setTheme("ace/theme/chrome");
+	loaded_editor.getSession().setTabSize(4);
+	loaded_editor.getSession().setUseSoftTabs(true);
+	loaded_editor.getSession().setMode("ace/mode/assembly_x86");  
+	document.getElementById('loaded').style.fontSize='20px';
+	loaded_editor.gotoLine(1);
+	loaded_editor.setReadOnly(true);
+
+	hex_editor.setTheme("ace/theme/chrome");
+	hex_editor.getSession().setTabSize(4);
+	hex_editor.getSession().setUseSoftTabs(true);
+	hex_editor.getSession().setMode("ace/mode/assembly_x86");  
+	document.getElementById('hex').style.fontSize='20px';
+	hex_editor.gotoLine(1);
+	hex_editor.setReadOnly(true);
+
   	macro_table.html("");
   	symbol_table.html("");
   	variable_table.html("");
@@ -204,46 +241,20 @@ function run_order_confirmed(){
 
 		  	}
 
-			var pass2_editor = ace.edit("pass2");
+			
 			alert("hello");
-			pass2_editor.setTheme("ace/theme/chrome");
-			pass2_editor.getSession().setTabSize(4);
-			pass2_editor.getSession().setUseSoftTabs(true);
-			pass2_editor.getSession().setMode("ace/mode/assembly_x86");  
-			document.getElementById('pass2').style.fontSize='20px';
+			
 			pass2_editor.setValue(data["pass2"]);
 			pass2_editor.gotoLine(1);
-			pass2_editor.setReadOnly(true); 
 
-			var linked_editor = ace.edit("linked");
-			linked_editor.setTheme("ace/theme/chrome");
-			linked_editor.getSession().setTabSize(4);
-			linked_editor.getSession().setUseSoftTabs(true);
-			linked_editor.getSession().setMode("ace/mode/assembly_x86");  
-			document.getElementById('linked').style.fontSize='20px';
 			linked_editor.setValue(data["linked"]);
 			linked_editor.gotoLine(1);
-			linked_editor.setReadOnly(true); 
-
-			var loaded_editor = ace.edit("loaded");
-			loaded_editor.setTheme("ace/theme/chrome");
-			loaded_editor.getSession().setTabSize(4);
-			loaded_editor.getSession().setUseSoftTabs(true);
-			loaded_editor.getSession().setMode("ace/mode/assembly_x86"); 
-			document.getElementById('loaded').style.fontSize='20px';
+			
 			loaded_editor.setValue(data["loaded"]);
 			loaded_editor.gotoLine(1); 
-			loaded_editor.setReadOnly(true); 
 
-			var hex_editor = ace.edit("hex");
-			hex_editor.setTheme("ace/theme/chrome");
-			hex_editor.getSession().setTabSize(4);
-			hex_editor.getSession().setUseSoftTabs(true);
-			hex_editor.getSession().setMode("ace/mode/assembly_x86"); 
-			document.getElementById('hex').style.fontSize='20px';
 			hex_editor.setValue(data["hex"]);
 			hex_editor.gotoLine(1); 	
-			hex_editor.setReadOnly(true); 
 	  	},
 	  	error: function (request, textStatus, error) {
             if(request.readyState==4){// 4 means complete
