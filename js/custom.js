@@ -21,7 +21,8 @@ $("document").ready(function(){
 			editor.gotoLine(1);
 
 		});
-		
+		// $("#editor").show();
+		$('#input_tabs a[href="#editor_pane"]').tab('show');
 		event_var.preventDefault();
 	});
 

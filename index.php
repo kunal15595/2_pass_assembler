@@ -31,7 +31,7 @@
 		<div class="container-fluid">
 		        <div class="container-fluid col-sm-6 col-md-6">
     				<div class="row" id="tabs">
-			     		<ul class="nav nav-tabs">
+			     		<ul class="nav nav-tabs" id="input_tabs">
 						    <li class="active">
 						    	<a href="#editor_pane" data-toggle="tab">Editor</a>
 						    </li>
@@ -108,7 +108,7 @@
 	    		</div>
 	    		<div class="container-fluid col-sm-6 col-md-6">
 	    			<div class="row" id="tabs">
-			     		<ul class="nav nav-tabs">
+			     		<ul class="nav nav-tabs" id="output_tabs">
 						    <li class="active">
 						    	<a href="#pass1" data-toggle="tab">Pass1</a>
 						    </li>
