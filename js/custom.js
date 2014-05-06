@@ -34,8 +34,9 @@ $("document").ready(function(){
 
 function save_file_to_server(){
 	file_content=editor.getSession().getValue();
-	var file_name=prompt("Enter file name","default");
+	var file_name=prompt("Enter file name(without extension)","default");
 	// alert(file_content);
+	file_name=file_name+".asm";
 	$.ajax({
 	  type: "POST",
 	  url: "upload.php",
