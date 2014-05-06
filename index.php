@@ -12,6 +12,9 @@
     #editor { 
         height: 590px;
     }
+    #pass2,#linked,#loaded,#hex{
+    	height: 590px;
+    }
 </style>
 <style>
   #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
@@ -112,15 +115,27 @@
 						    	<a href="#linked" data-toggle="tab">Linked</a>
 						    </li>
 						    <li>
+						    	<a href="#loaded" data-toggle="tab">Loaded</a>
+						    </li>
+						    <li>
 						    	<a href="#hex" data-toggle="tab">Hex</a>
 						    </li>
 						</ul>
     				</div>
     				<div class="tab-content" id="tab_content">
-	    				<div class="tab-pane active" id="pass1">Pass1</div>
-	    				<div class="tab-pane" id="pass2">Pass2</div>
-	    				<div class="tab-pane" id="linked">Linked</div>
-	    				<div class="tab-pane" id="hex">Hex</div>
+	    				<div class="tab-pane active" id="pass1">
+	    					Macros
+	    					<table id="macro_table"class="table table-striped"></table>
+	    					Symbols
+	    					<table id="symbol_table"class="table table-striped"></table>
+	    					Variables
+	    					<table id="variable_table"class="table table-striped"></table>
+	    				</div>
+	    				<div class="tab-pane" id="pass2"></div>
+	    				<div class="tab-pane" id="linked"></div>
+	    				<div class="tab-pane" id="loaded"></div>
+	    				<div class="tab-pane" id="hex"></div>
+
     				</div>
 	    		</div>
 		</div>
@@ -210,9 +225,11 @@
 <!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
 <!-- <script src="js/vendor/jquery.ui.widget.js"></script> -->
 <!-- The Templates plugin is included to render the upload/download listings -->
-<script src="http://blueimp.github.io/JavaScript-Templates/js/tmpl.min.js"></script>
+<!-- <script src="http://blueimp.github.io/JavaScript-Templates/js/tmpl.min.js"></script> -->
+<script type="text/javascript" src="js/tmpl.min.js"></script>
 <!-- The Load Image plugin is included for the preview images and image resizing functionality -->
-<script src="http://blueimp.github.io/JavaScript-Load-Image/js/load-image.min.js"></script>
+<!-- <script src="http://blueimp.github.io/JavaScript-Load-Image/js/load-image.min.js"></script> -->
+<script type="text/javascript" src="js/load-image.min.js"></script>
 <!-- The Canvas to Blob plugin is included for image resizing functionality -->
 <!-- <script src="http://blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script> -->
 <!-- Bootstrap JS is not required, but included for the responsive demo navigation -->
