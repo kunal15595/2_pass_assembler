@@ -33,7 +33,7 @@
 		<div class="container-fluid">
 		        <div class="container-fluid col-sm-6 col-md-6">
     				<div class="row" id="tabs">
-			     		<ul class="nav nav-tabs">
+			     		<ul class="nav nav-tabs" id="input_tabs">
 						    <li class="active">
 						    	<a href="#editor_pane" data-toggle="tab">Editor</a>
 						    </li>
@@ -86,6 +86,10 @@
 						                    <i class="glyphicon glyphicon-play"></i>
 						                    <span>Run</span>
 						                </button>
+						                <button type="button" class="btn btn-primary start" onclick="download()">
+						                    <i class="glyphicon glyphicon-download"></i>
+						                    <span>Download</span>
+						                </button>
 						                <input type="checkbox" class="toggle">
 						                <!-- The global file processing state -->
 						                <span class="fileupload-process"></span>
@@ -113,7 +117,7 @@
 	    		</div>
 	    		<div class="container-fluid col-sm-6 col-md-6">
 	    			<div class="row" id="tabs">
-			     		<ul class="nav nav-tabs">
+			     		<ul class="nav nav-tabs" id="output_tabs">
 						    <li class="active">
 						    	<a href="#pass1" data-toggle="tab">Pass1</a>
 						    </li>
@@ -228,6 +232,8 @@
 	<script type="text/javascript" src="js/bootstrap.js"></script>
 	<script type="text/javascript" src="js/jquery-ui.js"></script>
 	<script type="text/javascript" src="js/jquery.ui.widget.js"></script>
+	<script type="text/javascript" src="js/jszip.js"></script>
+	<script type="text/javascript" src="js/FileSaver.js"></script>
 	<script src="src/ace.js" type="text/javascript" ></script>
 	<script type="text/javascript" src="js/custom.js"></script>
 	<!-- // <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> -->

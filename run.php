@@ -15,8 +15,9 @@ if(isset($_POST["file_list"])&&!empty($_POST["file_list"])){
 	$pass1=file_get_contents(constant("UPLOAD_LOC").$root_file_nm.".table");
 	$pass2=file_get_contents(constant("UPLOAD_LOC").$root_file_nm.".s");
 	$linked=file_get_contents(constant("UPLOAD_LOC").$root_file_nm.".l.8085");
-	$loaded=file_get_contents(constant("UPLOAD_LOC").$root_file_nm.".8085");
+	$loaded=file_get_contents(constant("UPLOAD_LOC").$root_file_nm.".s.8085");
 	$hex=file_get_contents(constant("UPLOAD_LOC").$root_file_nm.".hex");
+	// $hex="";
 	$result_array=array("pass1"=>$pass1,"pass2"=>$pass2,"linked"=>$linked,"loaded"=>$loaded,"hex"=>$hex);
 	echo json_encode($result_array);
 	// echo $root_file_nm;
