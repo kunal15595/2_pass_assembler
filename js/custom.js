@@ -6,6 +6,13 @@ editor.getSession().setUseSoftTabs(true);
 editor.getSession().setMode("ace/mode/assembly_x86");
 document.getElementById('editor').style.fontSize='20px';
 
+var new_instruction_editor = ace.edit("new_instruction_editor");
+new_instruction_editor.setTheme("ace/theme/chrome");
+new_instruction_editor.getSession().setTabSize(4);
+new_instruction_editor.getSession().setUseSoftTabs(true);
+new_instruction_editor.getSession().setMode("ace/mode/assembly_x86");
+document.getElementById('new_instruction_editor').style.fontSize='20px';
+
 $("document").ready(function(){
 	$(".custom_icon_link").hover(function(){
         $(this).find(".custom_navbar_icon").css("color","#fff");
@@ -28,6 +35,7 @@ $("document").ready(function(){
 
 	$( "#sortable" ).sortable();
     $( "#sortable" ).disableSelection();
+
     
 });
 
@@ -431,6 +439,45 @@ function save_opcode(){
 		name: name,
 		para : para,
 		code :code
+		},
+		success : function(data){
+			alert("save success");
+		},
+	  	error: function (request, textStatus, error) {
+            if(request.readyState==4){// 4 means complete
+                if(request.status!=200){
+                    alert(textStatus);
+                    alert(request.status);
+                    alert(error);        
+                }else{
+                    //no error
+                }    
+            }
+        }
+	  
+	});
+
+}
+
+
+function save_new_opcode(){
+	var name=document.getElementById("name_new").value ;
+	var para=document.getElementById("para_new").value;
+	var new_instruction_editor = ace.edit("new_instruction_editor");
+	var code=new_instruction_editor.getSession().getValue();
+	
+	
+
+	$.ajax({
+	  	type: "POST",
+	  	url: "add_inst.php",
+	  	data: {
+		name: name,
+		para : para,
+		code :code
+		},
+		success: function(data){
+			alert("save success");
 		},
 	  	error: function (request, textStatus, error) {
             if(request.readyState==4){// 4 means complete
