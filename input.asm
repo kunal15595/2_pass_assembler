@@ -1,0 +1,11 @@
+LXI H, 4000H ;HL Points 4000H  
+MOV A, M ;Get first operand 
+INX H ;HL Points 4001H 
+ADD M ;Add second operand 
+INX H ;HL Points 4002H 
+MOV M, A ;Store the lower byte of result at 4002H 
+MVI A, 00 ;Initialize higher byte result with 00H 
+ADC A ;Add carry in the high byte result 
+INX H ;HL Points 4003H 
+MOV M, A ;Store the higher byte of result at 4003H 
+HLT ;Terminate program execution

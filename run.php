@@ -10,11 +10,26 @@ if(isset($_POST["file_list"])&&!empty($_POST["file_list"])){
 	$result_python=shell_exec("python python/main.py ".$cmd_line_args);
 	// echo $result;
 	$root_file_nm=explode(".",$file_list[0])[0];
-	$result_c=shell_exec("./8085assembler ".constant("UPLOAD_LOC").$root_file_nm.".8085 -n > ".constant("UPLOAD_LOC").$root_file_nm.".hex");
+	$result_c=shell_exec("./8085assembler ".constant("UPLOAD_LOC").$root_file_nm.".s.8085 -n > ".constant("UPLOAD_LOC").$root_file_nm.".hex");
 	// echo $result_c;
-	$pass1=file_get_contents(constant("UPLOAD_LOC").$root_file_nm.".table");
-	$pass2=file_get_contents(constant("UPLOAD_LOC").$root_file_nm.".s");
-	$linked=file_get_contents(constant("UPLOAD_LOC").$root_file_nm.".l.8085");
+	$pass1="";
+	$pass2="";
+	$linked="";
+
+	foreach ($file_list as $file_name) {
+		$pass1.=file_get_contents(constant("UPLOAD_LOC").explode(".",$file_name)[0].".table");
+	}
+	foreach ($file_list as $file_name) {
+		$pass2.="\n---------------".$file_name."----------------------\n";
+		$pass2.=file_get_contents(constant("UPLOAD_LOC").explode(".",$file_name)[0].".s");	
+	}
+	
+	foreach ($file_list as $file_name) {
+		$linked.="\n---------------".$file_name."----------------------\n";
+		$linked.=file_get_contents(constant("UPLOAD_LOC").explode(".",$file_name)[0].".l.8085");	
+	}
+
+	// $linked=file_get_contents(constant("UPLOAD_LOC").$root_file_nm.".l.8085");
 	$loaded=file_get_contents(constant("UPLOAD_LOC").$root_file_nm.".s.8085");
 	$hex=file_get_contents(constant("UPLOAD_LOC").$root_file_nm.".hex");
 	// $hex="";
