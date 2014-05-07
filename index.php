@@ -220,10 +220,7 @@
         </td>
         <td>
             {% if (file.deleteUrl) { %}
-                <button class="btn btn-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}"{% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
-                    <i class="glyphicon glyphicon-trash"></i>
-                    <span>Delete</span>
-                </button>
+                
                 <input type="checkbox" name="delete" value="1" run_sel_value="{%=file.name%}"  class="toggle">
             {% } else { %}
                 <button class="btn btn-warning cancel">
