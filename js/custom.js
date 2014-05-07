@@ -142,8 +142,8 @@ function run_order_confirmed(){
 		  	
 		  	if(data["pass1"]){
 		  		var pass1=data["pass1"];
-
 		  		var pass1_array=pass1.split("\n");
+		  		pass1_array.pop();//there is a \n at the end so we will get an empty element in pass1_array
 		  		var macro_start_index=0;
 		  		var macro_end_index=0;
 		  		var symbol_start_index=0;
@@ -190,7 +190,7 @@ function run_order_confirmed(){
 				  		// alert(symbol_start_index);
 				  		// alert(num_macros);
 				  		// alert(num_variables);
-				  		// alert();
+				  		// alert("dsjgad");
 				  		if( num_macros>0 ){
 				  			for(var i=macro_start_index+1;i<macro_end_index;i++){
 				  				// alert("macro");
@@ -251,6 +251,7 @@ function run_order_confirmed(){
 		  		// alert(symbol_start_index);
 		  		// alert(num_macros);
 		  		// alert(num_variables);
+		  		// alert("out");
 		  		if( num_macros>0 ){
 		  			for(var i=macro_start_index+1;i<macro_end_index;i++){
 		  				// alert("macro");
@@ -267,6 +268,7 @@ function run_order_confirmed(){
 		  		}
 
 		  		if( num_symbols>0 ){
+		  			// alert(symbol_start_index+ " " + symbol_end_index);
 		  			for(var i=symbol_start_index+1;i<symbol_end_index;i++){
 		  				var tb_row=$("<tr>");
 		  				var string_row_array=pass1_array[i].split(/[\s]+/);
@@ -312,7 +314,7 @@ function run_order_confirmed(){
 
 			hex_editor.setValue(data["hex"]);
 			hex_editor.gotoLine(1); 	
-			alert(pass1);
+			// alert(pass1);
 	  	},
 	  	error: function (request, textStatus, error) {
             if(request.readyState==4){// 4 means complete
