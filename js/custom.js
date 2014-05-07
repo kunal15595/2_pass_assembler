@@ -409,7 +409,8 @@ function edit_opcode(name,para,code){
 		edit_instruction_editor.getSession().setUseSoftTabs(false);
 		edit_instruction_editor.getSession().setMode("ace/mode/assembly_x86");
 		document.getElementById('edit_instruction_editor').style.fontSize='20px';
-		document.getElementById('edit_instruction_editor').style.height='200px';
+		document.getElementById('edit_instruction_editor').style.height='400px';
+		// alert(document.getElementById('edit_instruction_editor').style.height);
 		code=code.replace(/aa/g,"\n");
 		code="\t"+code;
 		edit_instruction_editor.setValue(code);

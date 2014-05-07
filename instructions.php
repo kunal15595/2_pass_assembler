@@ -22,9 +22,9 @@
 	    array_push($opcode_array,$single_opcode);
 	}
 ?>
-
-<div class="col-span-3">
-	<ul>
+<div class="container-fluid">
+<div class="container-fluid col-md-3">
+	<ul style="list-style-type: none;">
 		<?php
 			foreach($opcode_array as $row){
 				// echo $row["code"];
@@ -41,10 +41,11 @@
 		?>
 	</ul>
 </div>
-<div class="col-span-9">
-		<input type="text" id="name" readonly="true" name="name">
-		<input type="text" id="para" name="para">
+<div class="container-fluid col-span-9">
+		Name:<input type="text" id="name" readonly="true" name="name">
+		<br>Parameter:<input type="text" id="para" name="para">
 		<div id="edit_instruction_editor"></div>
 		<input type="submit" value="Save" onclick="save_opcode()">
 </div>
 
+</div>
