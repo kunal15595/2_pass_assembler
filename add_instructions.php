@@ -46,14 +46,6 @@
 <head>
 	<title>Instructions</title>
 	<link href="instyle.css" rel="stylesheet" type="text/css" />
-	<script>
-	function myFunction(x,y){
-
-		//alert(x);
-		//var name1="<?php echo $name[0]; ?>";
-		document.getElementById("name").innerHTML = y ;
-	}
-	</script>
 </head>
 <body>
 <div id="bodypanel">

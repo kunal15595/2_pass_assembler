@@ -1,113 +1,50 @@
 <?php
-	// $opcodes = array('' => , );
-	$name = array();
-	$par = array();
-	$exp = array();
 
 	$file = file_get_contents('python/config/opcodes.config', true);
-	// echo $file;
-	$f = 'file.txt'; 
-	
 	preg_match_all('/((OPCODE\s*.*\n)((\s*(?!OPEND).*\n*)*)(OPEND))/', $file, $matches, PREG_SET_ORDER);
-	// echo sizeof($matches);
-	// echo $matches[0][1];
+	$opcode_array=array();
 	foreach ($matches as $match) {
-		// file_put_contents($f, $match);
-		// var_dump($match);
-	    // $lines = explode('\n', $match);
-	    // var_dump($match[1]);
-	    // echo "\n";
-	    // echo "string";
-	    // var_dump($lines[0]);
 		preg_match_all('/(.*\n*)/', $match[1], $parts, PREG_SET_ORDER);
-		// var_dump($parts[1]);
-		preg_match_all('/(\S+)/', $parts[0][0], $sub_parts, PREG_SET_ORDER);
-		
-	    // $parts = explode('\r', $match[1]);
-	    // var_dump($parts);
-	    // var_dump($sub_parts[2]);
-	    array_push($name, $sub_parts[1][0]);
-	    array_push($par, $sub_parts[2][0]);
+		preg_match_all('/(\S+)/', $parts[0][0], $name_and_para, PREG_SET_ORDER);
+		$name=$name_and_para[1][0];
+		$parameter=$name_and_para[2][0];
+		// $parameter=str_replace("&", "\&", $parameter);
+
 	    $code = '';
 	    for ($i=1; $i < sizeof($parts)-2; $i++) { 
 	    	$code.=$parts[$i][0];
 	    	
-	    	$code.='<br>';
+	    	// $code.='<br>';
 	    }
-	    array_push($exp, $code);
-	    // var_dump($code);
+	    // $code=str_replace("&", "\&", $code);
+	    $code=trim($code);
+	    $single_opcode=array("name"=>$name,"par"=>$parameter,"code"=>$code);
+	    array_push($opcode_array,$single_opcode);
 	}
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Instructions</title>
-	<link href="instyle.css" rel="stylesheet" type="text/css" />
-	<script>
-	function myFunction(x,y){
-
-		//alert(x);
-		//var name1="<?php echo $name[0]; ?>";
-		document.getElementById("name").innerHTML = y ;
-	}
-	</script>
-</head>
-<body>
-<div id="bodypanel">
-	<br>
-	<div id="cssmenu">
-			<?php
-	    		
-	    	$arrlength=count($name);
-	    	echo "<ul>";
-	    	for($x=0;$x<$arrlength;$x++)
-	    	  {
-	    	  echo "<li>";
-	    	  //echo "<button href ='Instructions.php?".$x."'=true onclick='open_opcode(this)'><span>";
-	    	  //echo '<li><a onclick="myFunction('echo $x;')"><span>';
-	    	  printf('<li><a onClick="myFunction(\'%d\',\'%s\');">', $x,$name[$x]);
-	    	  echo $name[$x];
-	    	  echo "</span></a></li>";
-	    	  //echo "<br>";
-	    	  }
-	    	  echo "</ul>"
-	    	?> 
-	</div>
-	<div id="rightpanel">
-	    	<?php
-	    	echo '<form id="login_form" class="center_form" method="post" action="add_inst.php"><table>
-	    	<tr>
-	    		<td>Name:</td> 
-	    		<td><p id="name"></td>
-	    	</tr>
-	    	<tr>
-	    		<td>Parameter:</td> 
-	    		<td><input type="text" name="firstname" id="para"></td>
-	    	</tr>
-	    	<tr>
-	    		<td>code:</td>
-	    		<td><textarea rows="12" cols="40" id="code"></textarea></td>
-	    	</tr>
-				<td></td>
-				<td><input type="submit" name="submit" id="submit_1" value="Submit" class="submit-button"></td>
-			</tr>
-	    	</table>
-	    	</form>'
-	    	// $opcodes = array('' => , );
-	    	/*
-	    	for($x=0;$x<$arrlength;$x++)
-	    	  {
-	    	  echo $name[$x];
-	    	  echo "<br>";
-	    	  }
-	    		//var_dump($name);
-	    		//var_dump($par);
-	    		//var_dump($exp);
-	    	*/
-	    	?> 
-	</div>
+<div class="col-span-3">
+	<ul>
+		<?php
+			foreach($opcode_array as $row){
+				// echo $row["code"];
+				echo "<li>";
+				$row["code"]=preg_replace("/\n/", "aa", $row["code"]);
+				$onclick="edit_opcode('".$row["name"]."','".$row["par"]."','".$row["code"]."')";
+				// $onclick="edit_opcode(1,2,3)";
+				// echo $onclick;
+				?>
+				<input type="button" value="<?php echo $row["name"];?>" onclick="<?php echo $onclick; ?>">
+				<?php
+				echo "</li>";
+			}	
+		?>
+	</ul>
 </div>
-</body>
-</html>
+<div class="col-span-9">
+		<input type="text" id="name" readonly="true" name="name">
+		<input type="text" id="para" name="para">
+		<div id="edit_instruction_editor"></div>
+		<input type="submit" value="Save" onclick="save_opcode()">
+</div>
 

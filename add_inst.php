@@ -1,13 +1,21 @@
 
 <?php
 
-	define("HOST11", "http://localhost/biswas/php_assembler");
+	// define("HOST11", "http://localhost/biswas/php_assembler");
 	// Grab User submitted information
 	if (isset($_POST['name']) && isset($_POST['para']) && isset($_POST['code'])) {
 		# code...
 		$name = $_POST["name"];
 		$par = $_POST["para"];
 		$code = $_POST["code"];
+		// $code=preg_replace("/\n\s+/g","\n\t",$code);
+		$code_array=preg_split("/\n/",$code);
+		$code="";
+		foreach ($code_array as $key => $value) {
+			if($line[0]!="\t")
+				$code_array[$key]="\t".$code_array[$key];
+			$code.=$code_array[$key]."\n";
+		}
 	}
 	
 	function update($name, $par, $code)
@@ -24,7 +32,7 @@
 			// echo sizeof($matches);
 			// preg replace
 			// var_dump("\t".$code);
-			preg_replace('\n','\n\t',"\t" . $code);
+			// preg_replace('\n','\n\t',"\t" . $code);
 			var_dump($code);
 			// echo str_replace(array("\r\n","\r","\n"),'<br>',$code);
 			$replace = "OPCODE ".$name." ".$par."\n\t".$code."\n"."OPEND";
@@ -40,12 +48,14 @@
 			$file.="\n\n".$add;
 
 		}
-		$ofile = fopen("output.txt","w");
+		$ofile = fopen("python/config/opcodes.config","w");
+		echo "<br> Hello";
+		echo $file;
 		echo fwrite($ofile, $file);
 		fclose($ofile);
 	}
 
 	update($name, $par, $code);
-	// header("Location: ".constant("HOST11")."/index.php");
+	// header("Location: index.php");
 	echo $name,$par,$code;
 ?>

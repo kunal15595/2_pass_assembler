@@ -382,3 +382,67 @@ function download(){
  //    window.location.assign(url);
 
 }
+
+
+// function edit_opcode(name,para,code){
+
+		// alert("x");
+		// document.getElementById("name").innerHTML = name ;
+		// document.getElementById("para").innerHTML = para; 
+		// var edit_instruction_editor = ace.edit("edit_instruction_editor");
+		// edit_instruction_editor.setTheme("ace/theme/chrome");
+		// edit_instruction_editor.getSession().setTabSize(4);
+		// edit_instruction_editor.getSession().setUseSoftTabs(true);
+		// edit_instruction_editor.getSession().setMode("ace/mode/assembly_x86");
+		// document.getElementById('edit_instruction_editor').style.fontSize='20px';
+		// document.getElementById('edit_instruction_editor').style.height='200px';
+
+
+	// }
+
+function edit_opcode(name,para,code){
+		document.getElementById("name").value=name ;
+		document.getElementById("para").value=para; 
+		var edit_instruction_editor = ace.edit("edit_instruction_editor");
+		edit_instruction_editor.setTheme("ace/theme/chrome");
+		edit_instruction_editor.getSession().setTabSize(4);
+		edit_instruction_editor.getSession().setUseSoftTabs(false);
+		edit_instruction_editor.getSession().setMode("ace/mode/assembly_x86");
+		document.getElementById('edit_instruction_editor').style.fontSize='20px';
+		document.getElementById('edit_instruction_editor').style.height='200px';
+		code=code.replace(/aa/g,"\n");
+		code="\t"+code;
+		edit_instruction_editor.setValue(code);
+}
+
+function save_opcode(){
+	var name=document.getElementById("name").value ;
+	var para=document.getElementById("para").value;
+	var edit_instruction_editor = ace.edit("edit_instruction_editor");
+	var code=edit_instruction_editor.getSession().getValue();
+	
+	
+
+	$.ajax({
+	  	type: "POST",
+	  	url: "add_inst.php",
+	  	data: {
+		name: name,
+		para : para,
+		code :code
+		},
+	  	error: function (request, textStatus, error) {
+            if(request.readyState==4){// 4 means complete
+                if(request.status!=200){
+                    alert(textStatus);
+                    alert(request.status);
+                    alert(error);        
+                }else{
+                    //no error
+                }    
+            }
+        }
+	  
+	});
+
+}

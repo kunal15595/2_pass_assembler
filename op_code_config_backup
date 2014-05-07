@@ -14,7 +14,6 @@ OPCODE ADDD  &m1,&m2,&m3
     MOV A,B 
     STA 4301H
     HLT
-OPEND
 
 OPCODE ADDS &m1,&m2,&m3
     LDA &m1 
@@ -221,6 +220,4 @@ OPCODE MUT &m1,&m2
     POP D
     MOV D, A
 OPEND
-
-
 

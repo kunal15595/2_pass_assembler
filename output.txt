@@ -14,6 +14,7 @@ OPCODE ADDD  &m1,&m2,&m3
     MOV A,B 
     STA 4301H
     HLT
+OPEND
 
 OPCODE ADDS &m1,&m2,&m3
     LDA &m1 
@@ -223,6 +224,7 @@ OPEND
 
 
 
-OPCODE jk,mhn kj,mhn
-jk,hmn
+OPCODE shukla gdkaj
+	gfkjsaelkdjglk
+
 OPEND

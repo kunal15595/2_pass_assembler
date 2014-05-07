@@ -7,7 +7,7 @@ import assembler
 def load( fileNames ):
 	i = 0
 	asCode = []
-	i=1
+	i=4200
 	for fileName in fileNames :
 		fileName = fileName.split('.')[0]
 		loadFile[fileName] = i#input('Where To Load ' + fileName + '.s : ') Shubham shukla edited this becaus I am giving it the correct order
