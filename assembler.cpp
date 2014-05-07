@@ -204,7 +204,7 @@ bool Assembler::constructComTable()
         symbol.second.setCode(tok);
 
         // inserting in the table
-        std::cout << symbol.first << "::" << symbol.second.op1 << ":" << symbol.second.op2 << ":" << symbol.second.code  << '\n';
+        // std::cout << symbol.first << "::" << symbol.second.op1 << ":" << symbol.second.op2 << ":" << symbol.second.code  << '\n';
         comTable.insert(symbol);
     }
 
@@ -257,12 +257,12 @@ Signal Assembler::pass1()
     address = ORG;
     int output_pos = 0;
 
-    std::cout << "\n------------------------\n" << std::endl;
+    // std::cout << "\n------------------------\n" << std::endl;
     
     // repeat until ret is "OKAY"
     while ((ret = tokenize()) == OKAY)
     {
-        std::cout << "labelRead : " << labelRead << ", label : " << label << std::endl; 
+        // std::cout << "labelRead : " << labelRead << ", label : " << label << std::endl; 
         if (labelRead)
         {
             if (!(symTable.count(label)))
@@ -284,7 +284,7 @@ Signal Assembler::pass1()
             // get the op-code from constructed comTable
             CommandOpCode opCode = it->second;
 
-            std::cout << "opCode : " << opCode.op1 << " : " << opCode.op2 << " : " << opCode.code << std::endl; 
+            // std::cout << "opCode : " << opCode.op1 << " : " << opCode.op2 << " : " << opCode.code << std::endl; 
 
             // no op-codes required
             // case 1
@@ -438,7 +438,7 @@ Signal Assembler::pass1()
             }
             if (newline)
                 output.push_back('\n');
-            std::cout << "\n------------------------\n" << std::endl;
+            // std::cout << "\n------------------------\n" << std::endl;
         }
         else
         {

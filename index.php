@@ -8,6 +8,8 @@
 	<link rel="stylesheet" type="text/css" href="css/smoothness/jquery-ui.css">
 	<link rel="stylesheet" href="css/jquery.fileupload.css">
 	<link rel="stylesheet" href="css/jquery.fileupload-ui.css">
+	<link rel="stylesheet" href="css/style.css">
+	
 	<style type="text/css" media="screen">
     #editor { 
         height: 590px;
@@ -38,6 +40,9 @@
 						    <li>
 						    	<a href="#upload_pane" data-toggle="tab">Upload</a>
 						    </li>
+						    <li>
+						    	<a href="#instructions_pane" data-toggle="tab">Instructions</a>
+						    </li>
 						</ul>
     				</div>
     				<div class="tab-content" id="tab_content">
@@ -49,7 +54,7 @@
     					</div>
 	    				<div class="tab-pane" id="upload_pane">
 	    					<div id="run_order_div" class="row" style="display : none;">
-		    					Confirm the loading order
+		    					Confirm loading order
 		    					<form id="run_order_sort">
 		    						<ul id="sortable"></ul>
 		    						<input type="button" value="Confirm Order" onclick="run_order_confirmed()">
@@ -100,6 +105,10 @@
     						</form>
        
 	    				</div>
+	    				<div class="tab-pane" id="instructions_pane">
+	    					<?php include 'instructions.php';?>
+	    					
+	    				</div >
     				</div>
 	    		</div>
 	    		<div class="container-fluid col-sm-6 col-md-6">
