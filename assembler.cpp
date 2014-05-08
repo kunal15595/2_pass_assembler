@@ -290,7 +290,7 @@ Signal Assembler::pass1()
             // case 1
             if (opCode.op1 == 0)
             {
-                std::cout << "case 1 " << std::endl;
+                // std::cout << "case 1 " << std::endl;
                 if (opcode1Read)
                 {
                     std::cerr << "Command \"" << command << "\" does not expect opcodes\n";
@@ -305,7 +305,7 @@ Signal Assembler::pass1()
             // case 2
             else if (opCode.op1 == 1)
             {
-                std::cout << "case 2 " << std::endl;
+                // std::cout << "case 2 " << std::endl;
                 if (!opcode1Read)
                 {
                     std::cerr << "Command \"" << command << "\" expects a Byte of data\n";
@@ -322,7 +322,7 @@ Signal Assembler::pass1()
             // case 3
             else if (opCode.op1 == 2)
             {
-                std::cout << "case 3 " << std::endl;
+                // std::cout << "case 3 " << std::endl;
                 if (!opcode1Read)
                 {
                     std::cerr << "Command \"" << command << "\" expects 2 Bytes of data\n";
@@ -342,16 +342,17 @@ Signal Assembler::pass1()
                 else if(!isalpha(opCode.op1)){
                     s = op1;
                     if(s.length()==1)s='0'+s; 
-                    std::cout << "string : "<<s << "\n";
+                    // std::cout << "string : "<<s << "\n";
                 }
                 else
                 {
                     // label
-                    std::cout << "label -> " << op1 << ":" << output.size() << std::endl;
+                    // std::cout << "label -> " << op1 << ":" << output.size() << std::endl;
                     labels.insert(string_int(op1, output.size()));
                 }
                 if(s.length()<3){
-                    s[2] = s[3] = '0';
+                    s[2] = '4';
+                    s[3] = '2';
                 }
                 output.push_back(' ');
                 output.push_back(s[0]);
@@ -365,7 +366,7 @@ Signal Assembler::pass1()
             // case 4
             else if (opCode.op2 == '0')
             {
-                std::cout << "case 4 " << std::endl;
+                // std::cout << "case 4 " << std::endl;
                 if (!opcode1Read || opcode2Read)
                 {
                     std::cerr << "Command \"" << command << "\" requires exactly 1 opcode\n";
@@ -388,7 +389,7 @@ Signal Assembler::pass1()
             // case 5
             else if (isalpha(opCode.op1) && isalpha(opCode.op2))
             {
-                std::cout << "case 5 " << std::endl;
+                // std::cout << "case 5 " << std::endl;
                 if (!opcode2Read)
                 {
                     std::cerr << "Command \"" << command << "\" requires 2 opcodes\n";
@@ -411,7 +412,7 @@ Signal Assembler::pass1()
             // case 6
             else if (isalpha(opCode.op1) && opCode.op2 == '1')
             {
-                std::cout << "case 6 " << std::endl;
+                // std::cout << "case 6 " << std::endl;
                 if (!opcode2Read)
                 {
                     std::cerr << "Command \"" << command << "\" requires a Register and 1 Byte data\n";
@@ -433,7 +434,7 @@ Signal Assembler::pass1()
             }
             // case 7
             else{
-                std::cout << "case 7 " << std::endl;
+                // std::cout << "case 7 " << std::endl;
                 
             }
             if (newline)

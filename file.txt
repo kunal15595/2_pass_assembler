@@ -1,0 +1,23 @@
+OPCODE MUT &m1,&m2
+    LXI SP, &m1
+    MOV A, D
+    PUSH D
+    ADDMM &m2, &m2
+    POP D
+    MOV D, A
+OPENDOPCODE MUT &m1,&m2
+    LXI SP, &m1
+    MOV A, D
+    PUSH D
+    ADDMM &m2, &m2
+    POP D
+    MOV D, A
+OPENDOPCODE MUT &m1,&m2
+    LXI SP, &m1
+    MOV A, D
+    PUSH D
+    ADDMM &m2, &m2
+    POP D
+    MOV D, A
+    MOV D, A
+OPEND

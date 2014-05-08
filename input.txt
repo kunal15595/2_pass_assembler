@@ -1,33 +1,3 @@
-OPCODE ADDD  &m1,&m2,&m3
-    LDA &m1
-    MOV C,A
-    LXI H,&m2
-    SUB A
-    MOV B, A
-    BACK: ADD M
-    JNC SKIP 
-    INR B
-    SKIP: INX H
-    DCR C
-    JNZ BACK
-    STA &m3
-    MOV A,B 
-    STA 4301H
-    HLT
-
-OPCODE ADDS &m1,&m2,&m3
-    LDA &m1 
-    MOV C,A
-    SUB A
-    LXI H,&m2
-    BACK: ADD M
-    INX H
-    DCR C
-    JNZ BACK
-    STA &m3
-    HLT
-OPEND
-
 OPCODE COM2 &m1,&m2
     LDA &m1
     CMA
@@ -179,7 +149,6 @@ OPCODE MINMM &m1,&m2,&m3
              HLT
     smallest: MOV A, D
               STA &m1
-              
 OPEND
 
 OPCODE MAXMM &m1,&m2,&m3

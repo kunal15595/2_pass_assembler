@@ -221,3 +221,8 @@ OPCODE MUT &m1,&m2
     MOV D, A
 OPEND
 
+
+
+OPCODE jk,mhn kj,mhn
+jk,hmn
+OPEND
