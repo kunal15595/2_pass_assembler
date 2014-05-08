@@ -143,6 +143,7 @@ function run_order_confirmed(){
 		  	if(data["pass1"]){
 		  		var pass1=data["pass1"];
 		  		var pass1_array=pass1.split("\n");
+		  		pass1_array.pop();//there is a \n at the end so we will get an empty element in pass1_array
 		  		var macro_start_index=0;
 		  		var macro_end_index=0;
 		  		var symbol_start_index=0;
@@ -172,7 +173,7 @@ function run_order_confirmed(){
 		  						symbol_end_index=k;
 		  					j++;
 		  				}
-		  			}else{
+		  			}else if(j<6){
 		  				if(pass1_array[i]=="------------VARIABLE------------"){
 		  					// alert("variable"+k+" "+j);
 		  					if(j==4)
@@ -182,6 +183,61 @@ function run_order_confirmed(){
 	  						j++;
 	  						// alert(variable_start_index);
 		  				}
+		  			}else if(j==6){
+		  				num_macros=macro_end_index - macro_start_index -1;
+				  		num_symbols=symbol_end_index - symbol_start_index -1;
+				  		num_variables=variable_end_index - variable_start_index -1;
+				  		// alert(symbol_start_index);
+				  		// alert(num_macros);
+				  		// alert(num_variables);
+				  		// alert("dsjgad");
+				  		if( num_macros>0 ){
+				  			for(var i=macro_start_index+1;i<macro_end_index;i++){
+				  				// alert("macro");
+				  				var tb_row=$("<tr>");
+				  				var string_row_array=pass1_array[i].split(/[\s]+/);
+				  				for(var j in string_row_array){
+				  					var tb_col=$("<td>");
+				  					tb_col.text(string_row_array[j]);
+				  					tb_col.appendTo(tb_row);
+				  				}
+				  				tb_row.appendTo(macro_table);
+				  				
+				  			}
+				  		}
+
+				  		if( num_symbols>0 ){
+				  			for(var i=symbol_start_index+1;i<symbol_end_index;i++){
+				  				var tb_row=$("<tr>");
+				  				var string_row_array=pass1_array[i].split(/[\s]+/);
+				  				// console.log(string_row_array);
+				  				for(var j in string_row_array){
+				  					var tb_col=$("<td>");
+				  					tb_col.text(string_row_array[j]);
+				  					tb_col.appendTo(tb_row);
+				  				}
+				  				tb_row.appendTo(symbol_table);
+				  				
+				  			}
+				  		}
+
+				  		if( num_variables>0 ){
+				  			for(var i=variable_start_index+1;i<variable_end_index;i++){
+				  				// alert("varialbe");
+				  				var tb_row=$("<tr>");
+				  				var string_row_array=pass1_array[i].split(/[\s]+/);
+				  				for(var j in string_row_array){
+				  					var tb_col=$("<td>");
+				  					tb_col.text(string_row_array[j]);
+				  					tb_col.appendTo(tb_row);
+				  				}
+				  				tb_row.appendTo(variable_table);
+				  				
+				  			}
+				  		}
+				  		macro_start_index=k;
+				  		j=1;
+
 		  			}
 		  			k++;
 		  			// alert(j);
@@ -195,6 +251,7 @@ function run_order_confirmed(){
 		  		// alert(symbol_start_index);
 		  		// alert(num_macros);
 		  		// alert(num_variables);
+		  		// alert("out");
 		  		if( num_macros>0 ){
 		  			for(var i=macro_start_index+1;i<macro_end_index;i++){
 		  				// alert("macro");
@@ -211,6 +268,7 @@ function run_order_confirmed(){
 		  		}
 
 		  		if( num_symbols>0 ){
+		  			// alert(symbol_start_index+ " " + symbol_end_index);
 		  			for(var i=symbol_start_index+1;i<symbol_end_index;i++){
 		  				var tb_row=$("<tr>");
 		  				var string_row_array=pass1_array[i].split(/[\s]+/);
@@ -243,7 +301,7 @@ function run_order_confirmed(){
 		  	}
 
 			
-			alert("hello");
+			// alert("hello");
 			
 			pass2_editor.setValue(data["pass2"]);
 			pass2_editor.gotoLine(1);
@@ -256,6 +314,7 @@ function run_order_confirmed(){
 
 			hex_editor.setValue(data["hex"]);
 			hex_editor.gotoLine(1); 	
+			// alert(pass1);
 	  	},
 	  	error: function (request, textStatus, error) {
             if(request.readyState==4){// 4 means complete
