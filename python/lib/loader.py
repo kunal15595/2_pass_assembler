@@ -11,7 +11,7 @@ def load( fileNames ):
 	for fileName in fileNames :
 		fileName = fileName.split('.')[0]
 		loadFile[fileName] = i#input('Where To Load ' + fileName + '.s : ') Shubham shukla edited this becaus I am giving it the correct order
-		i=i+1
+		i=i+500
 	i=0
 # Generates file which run on Simulator
 	for fileName in fileNames :
