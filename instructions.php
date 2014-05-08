@@ -1,3 +1,15 @@
+<?php
+	// $opcodes = array('' => , );
+	$name = array();
+	$par = array();
+	$exp = array();
+
+	$file = file_get_contents('python/config/opcodes.config', true);
+	preg_match_all('/(OPCODE\s*.*\n)(\s*(?!OPEND).*\s*\n*)*OPEND/', $file, $matches, PREG_SET_ORDER);
+	// echo sizeof($matches);
+	// print_r($matches);
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,22 +22,8 @@
 </html>
 <div id="left_col">
 	<?php
-		$name = array();
-		$par = array();
-		$exp = array();
-
-		$fh = fopen('python/config/opcodes.config','r');
-		while ($line = fgets($fh)) {
-			if (strpos($line,'OPCODE') !== false) {
-			    $def = explode(" ", $line);
-			    echo $def;
-			    array_push($name, $def[1]);
-			    array_push($par, $def[2]);
-			    
-			}
-		}
-		fclose($fh);
-		echo $name[0];
+		
+		
 	?>
 </div>
 <div id="right_col">

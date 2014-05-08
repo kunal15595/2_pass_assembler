@@ -43,6 +43,9 @@
 						    <li>
 						    	<a href="#instructions_pane" data-toggle="tab">Instructions</a>
 						    </li>
+						    <li>
+						    	<a href="#add_instructions_pane" data-toggle="tab">Add Instruction</a>
+						    </li>
 						</ul>
     				</div>
     				<div class="tab-content" id="tab_content">
@@ -111,6 +114,10 @@
 	    				</div>
 	    				<div class="tab-pane" id="instructions_pane">
 	    					<?php include 'instructions.php';?>
+	    					
+	    				</div >
+	    				<div class="tab-pane" id="add_instructions_pane">
+	    					<?php include 'add_instructions.php';?>
 	    					
 	    				</div >
     				</div>
