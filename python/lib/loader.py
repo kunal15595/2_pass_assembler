@@ -7,11 +7,11 @@ import assembler
 def load( fileNames ):
 	i = 0
 	asCode = []
-	i=4200
+	i=400
 	for fileName in fileNames :
 		fileName = fileName.split('.')[0]
 		loadFile[fileName] = i#input('Where To Load ' + fileName + '.s : ') Shubham shukla edited this becaus I am giving it the correct order
-		i=i+500
+		i=i+1000
 	i=0
 # Generates file which run on Simulator
 	for fileName in fileNames :

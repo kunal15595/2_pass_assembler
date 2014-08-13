@@ -316,7 +316,7 @@ function run_order_confirmed(){
 
 			linked_editor.setValue(data["linked"]);
 			linked_editor.gotoLine(1);
-			
+			alert(data["loaded"]);
 			loaded_editor.setValue(data["loaded"]);
 			loaded_editor.gotoLine(1); 
 
